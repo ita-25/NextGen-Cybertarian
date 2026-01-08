@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen CyberTarians | Home - Innovation · Intellectual · Income</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f3ff;
+            --secondary: #ff00ff;
+            --accent: #00ff9d;
+            --dark: #0a0a16;
+            --darker: #050510;
+            --light: #f0f5ff;
+            --gray: #8a8aa3;
+            --glow: 0 0 15px;
+            --surface: #1a1a2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header with Logo Space */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.4s ease;
+            background-color: rgba(10, 10, 22, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--darker);
+            box-shadow: var(--glow) rgba(0, 243, 255, 0.5);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links li::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li:hover::after {
+            width: 100%;
+        }
+
+        .nav-btns {
+            display: flex;
+            align-items: center;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--darker);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow) rgba(0, 243, 255, 0.5);
+            margin-left: 20px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 243, 255, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(5, 5, 16, 0.85) 0%,
+                rgba(5, 5, 16, 0.7) 50%,
+                rgba(5, 5, 16, 0.9) 100%
+            );
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .main-logo {
+            margin-bottom: 30px;
+        }
+
+        .logo-large {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--darker);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.5);
+            margin: 0 auto 20px;
+        }
+
+        .logo-large-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            color: var(--light);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Animated 3 I's Section */
+        .triple-i-animation {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .i-card {
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            width: 280px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation-fill-mode: forwards;
+        }
+
+        .i-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #innovation-card {
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+            border-top: 3px solid var(--primary);
+        }
+
+        #intellectual-card {
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            border-top: 3px solid var(--accent);
+        }
+
+        #income-card {
+            animation: fadeInUp 0.8s ease 1.1s forwards;
+            border-top: 3px solid var(--secondary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .i-card:hover {
+            transform: translateY(-10px);
+            border-color: currentColor;
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .i-card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        #innovation-card h3 {
+            color: var(--primary);
+        }
+
+        #intellectual-card h3 {
+            color: var(--accent);
+        }
+
+        #income-card h3 {
+            color: var(--secondary);
+        }
+
+        .i-card p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .pulse-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .i-card:hover .pulse-effect {
+            animation: pulse 1.5s infinite;
+        }
+
+        #innovation-card .pulse-effect {
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.2) 0%, transparent 70%);
+        }
+
+        #intellectual-card .pulse-effect {
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.2) 0%, transparent 70%);
+        }
+
+        #income-card .pulse-effect {
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.2;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+        }
+
+        /* Floating Elements */
+        .floating-tech {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-tech span {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-tech span:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            color: var(--primary);
+            animation-delay: 0s;
+        }
+
+        .floating-tech span:nth-child(2) {
+            top: 70%;
+            left: 85%;
+            color: var(--secondary);
+            animation-delay: -5s;
+        }
+
+        .floating-tech span:nth-child(3) {
+            top: 80%;
+            left: 15%;
+            color: var(--accent);
+            animation-delay: -10s;
+        }
+
+        .floating-tech span:nth-child(4) {
+            top: 30%;
+            left: 90%;
+            color: var(--primary);
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, -20px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, -40px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-20px, -20px) rotate(270deg);
+            }
+        }
+
+        /* Hero CTA */
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--darker);
+            box-shadow: var(--glow) rgba(0, 243, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: var(--glow) rgba(0, 243, 255, 0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.4);
+        }
+
+        /* Quick Links to Other Pages */
+        .page-links {
+            padding: 80px 0;
+            background: rgba(5, 5, 16, 0.8);
+        }
+
+        .page-links h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .page-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            text-decoration: none;
+            display: block;
+            color: var(--light);
+        }
+
+        .page-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .page-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .page-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050510;
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--darker);
+            margin-right: 15px;
+        }
+
+        .footer-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+            
+            .triple-i-animation {
+                gap: 20px;
+            }
+            
+            .i-card {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(10, 10, 22, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .logo-large {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .logo-large-text {
+                font-size: 2rem;
+            }
+            
+            .triple-i-animation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .i-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+            
+            .logo-placeholder {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .page-links h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo -->
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo-area">
+                <div class="logo-placeholder">NC</div>
+                <a href="/" class="logo-text">NextGen CyberTarians</a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/domains.html">Tech Domains</a></li>
+                <li><a href="/community.html">Community</a></li>
+                <li><a href="/resources.html">Resources</a></li>
+                <li><a href="/join.html">Join</a></li>
+            </ul>
+            
+            <div class="nav-btns">
+                <a href="/join.html" class="cta-btn">Join Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-video-container">
+            <div class="video-overlay"></div>
+            <video autoplay muted loop id="heroVideo">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-wireframe-flow-1292-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="floating-tech">
+            <span><i class="fas fa-code"></i></span>
+            <span><i class="fab fa-ethereum"></i></span>
+            <span><i class="fas fa-brain"></i></span>
+            <span><i class="fas fa-gamepad"></i></span>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <!-- Main Logo -->
+                <div class="main-logo">
+                    <div class="logo-large">NC</div>
+                    <div class="logo-large-text">NextGen CyberTarians</div>
+                </div>
+                
+                <h1>The Vanguard of Tech Evolution</h1>
+                <p class="hero-tagline">Where innovation meets intellectual excellence for financial mastery. Join the elite collective shaping tomorrow's digital landscape today.</p>
+                
+                <!-- Animated 3 I's -->
+                <div class="triple-i-animation">
+                    <div class="i-card" id="innovation-card">
+                        <h3>Innovation</h3>
+                        <p>Redefining technological boundaries through cutting-edge solutions</p>
+                        <div class="pulse-effect"></div>
+                    </div>
+                    
+                    <div class="i-card" id="intellectual-card">
+                        <h3>Intellectual</h3>
+                        <p>Mastering complex domains through collaborative intelligence</p>
+                        <div class="pulse-effect"></div>
+                    </div>
+                    
+                    <div class="i-card" id="income-card">
+                        <h3>Income</h3>
+                        <p>Transforming expertise into sustainable wealth creation</p>
+                        <div class="pulse-effect"></div>
+                    </div>
+                </div>
+                
+                <!-- Hero CTA -->
+                <div class="hero-cta">
+                    <a href="/join.html" class="hero-btn btn-primary">Join the Vanguard</a>
+                    <a href="/domains.html" class="hero-btn btn-secondary">Explore Tech Domains</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links to Other Pages -->
+    <section class="page-links">
+        <div class="container">
+            <h2>Explore Our World</h2>
+            <div class="pages-grid">
+                <a href="/about.html" class="page-card">
+                    <div class="page-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>About Us</h3>
+                    <p>Our mission, vision, and the team behind NextGen CyberTarians</p>
+                </a>
+                
+                <a href="/domains.html" class="page-card">
+                    <div class="page-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Tech Domains</h3>
+                    <p>Web3, AI, Game Dev, Design, Cybersecurity and more</p>
+                </a>
+                
+                <a href="/community.html" class="page-card">
+                    <div class="page-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>Connect with fellow CyberTarians, events, and collaborations</p>
+                </a>
+                
+                <a href="/resources.html" class="page-card">
+                    <div class="page-icon">
+                        <i class="fas fa-toolbox"></i>
+                    </div>
+                    <h3>Resources</h3>
+                    <p>Tools, tutorials, and income-generating opportunities</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">NC</div>
+                        <div class="footer-logo-text">NextGen CyberTarians</div>
+                    </div>
+                    <p>We are the vanguard of technological evolution, uniting elite professionals across all digital domains to drive innovation, intellectual growth, and financial prosperity.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/domains.html">Tech Domains</a></li>
+                        <li><a href="/community.html">Community</a></li>
+                        <li><a href="/resources.html">Resources</a></li>
+                        <li><a href="/join.html">Join Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> contact@cybertarians.io</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Virtual HQ • Global Presence</p>
+                    <p><i class="fas fa-calendar-alt"></i> Events & Meetups Weekly</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NextGen CyberTarians. All rights reserved. | Innovation • Intellectual • Income</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Video controls
+        const heroVideo = document.getElementById('heroVideo');
+        
+        // Ensure video plays (some browsers require user interaction)
+        document.addEventListener('DOMContentLoaded', () => {
+            heroVideo.play().catch(e => {
+                console.log("Video autoplay prevented:", e);
+            });
+            
+            // Trigger 3 I's animation on load
+            setTimeout(() => {
+                document.querySelectorAll('.i-card').forEach(card => {
+                    card.classList.add('visible');
+                });
+            }, 500);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

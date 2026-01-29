@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen CyberTarians | Innovation · Intellectual · Income</title>
+   <title>NextGen CyberTarians | Innovation · Intellectual · Income</title>
+<link rel="icon" type="image/jpg" href="NextGen Cyberterian Logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -156,6 +157,59 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
+
+ /* Logo Styling */
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 1.5px solid var(--primary);
+    object-fit: cover;
+}
+
+/* Animated Hamburger Icon */
+.hamburger-icon {
+    width: 28px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger-icon span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--primary);
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Animation transforms when 'active' class is added */
+.mobile-menu-btn.active .hamburger-icon span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.mobile-menu-btn.active .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+.mobile-menu-btn.active .hamburger-icon span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* Centered Footer for Mobile */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+    .footer-contact p, .social-icons {
+        justify-content: center;
+    }
+}
+
 
         /* Hero Section */
         .hero {
@@ -683,30 +737,36 @@
     </style>
 </head>
 <body>
+
     <!-- Header & Navigation -->
     <header id="header">
-        <div class="container nav-container">
-            <a href="NextGen CyberTerians ⚡ 20260129_113326.jpg" class="logo">
-                <i class="fas fa-robot logo-icon"></i>
-                NextGen CyberTarians
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#domains">Domains</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#join">Join</a></li>
-            </ul>
-            
-            <div class="nav-btns">
-                <a href="#join" class="cta-btn">Join Now</a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+    <div class="container nav-container">
+        <a href="index.html" class="logo">
+            <img src="NextGen Cyberterian Logo.jpg" alt="Logo" class="logo-img">
+            NextGen CyberTarians
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#domains">Domains</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#join">Join</a></li>
+        </ul>
+        
+        <div class="nav-btns">
+            <a href="#join" class="cta-btn">Join Now</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <div class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
         </div>
-    </header>
+    </div>
+</header>
+
 
     <!-- Hero Section -->
     <section class="hero" id="home">

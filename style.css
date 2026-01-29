@@ -1,0 +1,106 @@
+/* Responsive adjustments for a perfect single-line header */
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 1.2rem; /* Shorter text for small screens */
+    }
+    
+    .logo-img {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    .cta-btn {
+        padding: 6px 15px; /* Smaller button */
+        font-size: 0.7rem;
+        margin-left: 10px;
+    }
+    
+    .nav-container {
+        padding: 0 10px; /* Thinner margins */
+    }
+}
+
+/* Ensure Nav Buttons stay together */
+.nav-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Fix for the Join button in the Hero section too */
+.btn-primary[href="#join"] {
+    /* Change the href in HTML to the WhatsApp link or update here via JS */
+}
+
+/* Fix for Hero content being hidden under header */
+.hero {
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center;
+    padding-top: 100px; /* Pushes content down below the fixed header */
+    min-height: 100vh; /* Ensures full screen height */
+    text-align: center;
+}
+
+.hero-content {
+    width: 100%;
+    margin-top: 20px; /* Fine-tune this if text still feels too high */
+}
+
+/* Ensure the triple-i items align nicely when centered */
+.triple-i {
+    justify-content: center;
+    gap: 30px;
+}
+
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0; /* Slimmer header on mobile */
+    }
+
+    .logo-text {
+        display: none; /* Hides "NextGen Cybertarians" text on very small screens to save space */
+    }
+    
+    /* Show "CT" or just the icon if text is hidden */
+    .logo::after {
+        content: 'CT';
+        font-family: 'Orbitron';
+        color: var(--primary);
+        font-size: 1.2rem;
+        font-weight: 900;
+    }
+
+    .cta-btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+        margin-left: auto; /* Pushes button towards the hamburger */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-about, .footer-links, .footer-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-contact p {
+        justify-content: center;
+    }
+}
+
+
